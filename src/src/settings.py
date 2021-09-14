@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'compressor',
     'compressor_toolkit',
+    'accounts',
 ]
 
 MIDDLEWARE = [
