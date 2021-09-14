@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'accounts/css/login.css' %}">
+{% endblock %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+Login page.
+{% endblock %}
+
+{% block js %}
+  <script type="module" src="{% static 'accounts/js/login.js' %}"></script>
+{% endblock %}
