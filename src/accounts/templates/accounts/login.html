@@ -1,17 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'accounts/css/login.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/login.css' %}">
 {% endblock %}
 
 {% block title %}
-    Login
+Login
 {% endblock %}
 
 {% block content %}
-Login page.
+
+<form id="login-form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit" id="login-btn">Login</button>
+</form>
+
 {% endblock %}
 
 {% block js %}
-  <script type="module" src="{% static 'accounts/js/login.js' %}"></script>
+<script type="module" src="{% static 'accounts/js/login.js' %}"></script>
 {% endblock %}
