@@ -9,7 +9,7 @@ from .forms import LoginForm
 class Login(generic.View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('accounts:settings', slug=request.user.username)
+            return redirect('accounts:settings')
         return render(request, 'accounts/login.html', {'form': LoginForm()})
     
     def post(self, request):
@@ -30,3 +30,10 @@ class Login(generic.View):
         except:
             messages.error(request, 'Internal Server Error.')        
         return render(request, 'accounts/login.html', {'form': form})
+
+
+class Settings(generic.View):
+    def get(self, request):
+        if not request.user.is_authenticated:
+            return redirect('accounts:login')
+        return render(request, 'accounts/settings.html')
