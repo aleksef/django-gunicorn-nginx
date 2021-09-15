@@ -6,6 +6,13 @@ from django.contrib import messages
 from .forms import LoginForm
 
 
+class Logout(generic.View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            logout(request)
+        return redirect('accounts:login')
+
+
 class Login(generic.View):
     def get(self, request):
         if request.user.is_authenticated:
