@@ -8,7 +8,8 @@ Settings
 {% endblock %}
 
 {% block content %}
-Account Settings
+Account settings: 
+<a href="{% url 'accounts:delete' %}">Delete Account</a>
 {% endblock %}
 
 {% block js %}

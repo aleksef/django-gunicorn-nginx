@@ -61,6 +61,25 @@ class Create(generic.View):
         return render(request, 'accounts/create.html', {'form': form})
 
 
+class Delete(generic.View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            if request.user.is_superuser or request.user.is_staff:
+                messages.error(request, "This action is not allowed.")
+                redirect('accounts:settings')
+            try:
+                request.user.delete()
+                messages.success(request, "Your account was succesfully deleted.")
+                return redirect('accounts:login')
+            except User.DoesNotExist:
+                messages.error(request, "User does not exist")
+            except Exception as e: 
+                messages.error(request, e.message)
+            return redirect('accounts:settings')
+        return redirect('accounts:login')
+        
+
+
 class Settings(generic.View):
     def get(self, request):
         if not request.user.is_authenticated:
