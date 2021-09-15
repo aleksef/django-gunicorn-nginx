@@ -21,21 +21,18 @@ class Login(generic.View):
     
     def post(self, request):
         form = LoginForm(request.POST)
-        try:
-            if form.is_valid():
+        if form.is_valid():
+            user = None
+            try:
                 user = authenticate(request,
                                     username=User.objects.get(email=form.cleaned_data['email']).username,
                                     password=form.cleaned_data['password'])
-                if user is not None:
-                    if user.is_active:
-                        login(request, user)
-                        return redirect('accounts:settings')
-                else:
-                    messages.error(request, 'Incorrect username or password.')
-            else:
-                messages.error(request, 'Form is invalid.')
-        except:
-            messages.error(request, 'Internal Server Error.')        
+                login(request, user)
+                return redirect('accounts:settings')
+            except:
+                messages.error(request, 'Incorrect username or password.')
+        else:
+            messages.error(request, 'Form is invalid.')     
         return render(request, 'accounts/login.html', {'form': form})
 
 
@@ -66,7 +63,7 @@ class Delete(generic.View):
         if request.user.is_authenticated:
             if request.user.is_superuser or request.user.is_staff:
                 messages.error(request, "This action is not allowed.")
-                redirect('accounts:settings')
+                return redirect('accounts:settings')
             try:
                 request.user.delete()
                 messages.success(request, "Your account was succesfully deleted.")
