@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/create.css' %}">
+{% endblock %}
+
+{% block title %}
+Create Account
+{% endblock %}
+
+{% block content %}
+
+<form id="create-form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit" id="create-btn">create</button>
+</form>
+
+{% endblock %}
+
+{% block js %}
+<script type="module" src="{% static 'accounts/js/create.js' %}"></script>
+{% endblock %}

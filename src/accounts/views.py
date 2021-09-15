@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import LoginForm
+from .forms import LoginForm, CreateForm
 
 
 class Logout(generic.View):
@@ -37,6 +37,28 @@ class Login(generic.View):
         except:
             messages.error(request, 'Internal Server Error.')        
         return render(request, 'accounts/login.html', {'form': form})
+
+
+class Create(generic.View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('accounts:settings')
+        return render(request, 'accounts/create.html', {'form': CreateForm()})
+
+    def post(self, request):
+        form = CreateForm(request.POST)
+        if form.is_valid():
+            user = User()
+            user.username = form.cleaned_data['username']
+            user.email = form.cleaned_data['email']
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            user = authenticate(username=form.cleaned_data['username'],
+                                password=form.cleaned_data['password'])
+            if user is not None and user.is_active:
+                login(request, user)
+                return redirect('accounts:settings')
+        return render(request, 'accounts/create.html', {'form': form})
 
 
 class Settings(generic.View):

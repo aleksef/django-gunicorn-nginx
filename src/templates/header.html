@@ -4,6 +4,8 @@
 || User={{ request.user }} || 
 {% if request.user.is_authenticated %}
 <a href="{% url 'accounts:logout' %}">Log Out</a>
+{% else %}
+<a href="{% url 'accounts:create' %}">Create Account</a>
 {% endif %}
 
 <script type="module" src="{% static "js/header.js" %}"></script>
