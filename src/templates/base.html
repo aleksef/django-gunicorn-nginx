@@ -3,29 +3,39 @@
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static "css/base.css" %}">
-        {% block css %}
-        {% endblock %}
-        <title>{% block title %}{% endblock %} - ProjectName</title>
-    </head>
-    <body>
-        <header>
-            {% include "header.html" %}
-        </header>
-        <content>
-            Page = {% block content %}
-            {% endblock %}
-        </content>
-        <footer>
-            {% include "footer.html" %}
-        </footer>
 
-        <script type="module" src="{% static "js/base.js" %}"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    {% block css %}
+    {% endblock %}
+    <title>{% block title %}{% endblock %} - ProjectName</title>
+</head>
 
-        {% block js %}
+<body>
+    <header>
+        {% include "header.html" %}
+    </header>
+    {% if messages %}
+    {% for message in messages %}
+    *** Message: {{ message }} ***
+    {% endfor %}
+    {% endif %}
+    <br>
+    <content>
+        {% block content %}
         {% endblock %}
-    </body>
+    </content>
+    <br>
+    <footer>
+        {% include "footer.html" %}
+    </footer>
+
+    <script type="module" src="{% static "js/base.js" %}"></script>
+
+    {% block js %}
+    {% endblock %}
+</body>
+
 </html>
