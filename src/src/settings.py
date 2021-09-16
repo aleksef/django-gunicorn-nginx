@@ -132,7 +132,7 @@ COMPRESS_ENABLED = True
 
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join('static'),)
+STATICFILES_DIRS = (os.path.join('static'), os.path.join('semantic'))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
