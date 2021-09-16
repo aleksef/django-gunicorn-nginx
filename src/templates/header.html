@@ -1,7 +1,37 @@
 {% load static %}
 <link rel="stylesheet" href="{% static "css/header.css" %}">
 
-|| User={{ request.user }} || 
+<div class="ui fixed inverted menu">
+    <div class="ui container">
+        <a href="#" class="header item">
+            <img class="logo" src="{% static "images/logo.png" %}">
+            Project Name
+        </a>
+        <a href="#" class="item">Link</a>
+        
+        <div class="right menu">
+            {% if request.user.is_authenticated %}
+            <div class="ui simple dropdown item">
+                <img class="ui avatar image" src="{% static "images/logo.png" %}">
+                <span id="menu-username">{{ request.user.username }}</span> <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="#">Link Item</a>
+                    <a class="item" href="#">Link Item</a>
+                    <a class="item" href="#">Link Item</a>
+                </div>
+            </div>
+            <a href="{% url 'accounts:logout' %}" class="ui item">
+                Log Out
+            </a>
+            {% else %}
+            <a class="item" href="{% url 'accounts:login' %}">Log In</a>
+            <a class="item" href="{% url 'accounts:create' %}">Create Account</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+|| User={{ request.user }} ||
 {% if request.user.is_authenticated %}
 <a href="{% url 'accounts:logout' %}">Log Out</a>
 {% else %}
