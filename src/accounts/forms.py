@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(min_length=8, max_length=16)
+    email = forms.EmailField(min_length=8, max_length=254)
     password = forms.CharField(min_length=8, max_length=24, widget=forms.PasswordInput())
     if email in [None, ''] or password in [None, '']:
         raise forms.ValidationError("Some fields are empty.")

@@ -1,0 +1,9 @@
+#form-container {
+    width: 100%
+}
+
+#login-form {
+    width: 300px;
+    display: table;
+    margin: 0 auto;
+}

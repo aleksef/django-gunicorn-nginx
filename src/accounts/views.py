@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import LoginForm, CreateForm
-
+from django import forms
 
 class Logout(generic.View):
     def get(self, request):
@@ -30,9 +30,9 @@ class Login(generic.View):
                 login(request, user)
                 return redirect('accounts:settings')
             except:
-                messages.error(request, 'Incorrect username or password.')
+                form.add_error(None, 'Incorrect username or password.')
         else:
-            messages.error(request, 'Form is invalid.')     
+            form.add_error(None, 'Form is invalid.')
         return render(request, 'accounts/login.html', {'form': form})
 
 
