@@ -1,0 +1,8 @@
+#messages-container {
+    width: 100%;
+}
+
+.ui.message {
+    display: table;
+    margin: 0 auto;
+}
