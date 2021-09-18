@@ -34,14 +34,14 @@ class CreateForm(forms.Form):
         if password != confirm_password:
             raise forms.ValidationError("Passwords do not match.")
         try:
-            match = User.objects.get(email=email)
-            raise forms.ValidationError('This email address is already in use.')
-        except User.DoesNotExist:
-            # OK, no matches
-            pass
-        try:
             match = User.objects.get(username=username)
             raise forms.ValidationError('This username is already in use.')
         except User.DoesNotExist:
             # OK, no matches
-            pass
+            pass        
+        try:
+            match = User.objects.get(email=email)
+            raise forms.ValidationError('This email address is already in use.')
+        except User.DoesNotExist:
+            # OK, no matches
+            pass        

@@ -58,8 +58,6 @@ class Create(generic.View):
                     return redirect('accounts:settings')
             except:
                 form.add_error(None, 'Internal Server Error.')
-        else:
-            form.add_error(None, 'Form is invalid.')
         return render(request, 'accounts/create.html', {'form': form})
 
 
