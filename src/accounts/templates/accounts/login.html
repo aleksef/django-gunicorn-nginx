@@ -36,7 +36,20 @@ Login
   </div>
   {% endfor %}
 
+  <div class="ui field">
+    <a href="#">Forgot your password?</a>
+  </div>
+
+
   <button class="ui fluid primary button" type="submit" id="login-btn">Log In</button>
+  
+  
+  <div class="ui horizontal divider">
+    New to us?
+  </div>
+  <a href="{% url 'accounts:create' %}" class="ui fluid primary button">
+    Create Account
+  </a>
 </form>
 </div>
 
