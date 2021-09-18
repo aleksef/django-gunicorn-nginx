@@ -15,9 +15,7 @@
                 <img class="ui avatar image" src="{% static "images/logo.png" %}">
                 <span id="menu-username">{{ request.user.username }}</span> <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a class="item" href="#">Link Item</a>
-                    <a class="item" href="#">Link Item</a>
-                    <a class="item" href="#">Link Item</a>
+                    <a class="item" href="{% url 'accounts:settings' %}">Account Settings</a>
                 </div>
             </div>
             <a href="{% url 'accounts:logout' %}" class="ui item">
