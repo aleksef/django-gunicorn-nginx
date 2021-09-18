@@ -32,7 +32,22 @@ Create Account
     </div>
     {% endfor %}
 
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden" required>
+        <label>I agree to the 
+          <a href="#">Terms and Conditions</a>
+        </label>
+      </div>
+    </div>
+
     <button class="ui fluid primary button" type="submit" id="create-btn">Create Account</button>
+    <div class="ui horizontal divider">
+      Already have an account?
+    </div>
+    <a href="{% url 'accounts:login' %}" class="ui fluid primary button">
+      Log In
+    </a>
   </form>
 </div>
 
