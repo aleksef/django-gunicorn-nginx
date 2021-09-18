@@ -45,16 +45,21 @@ class Create(generic.View):
     def post(self, request):
         form = CreateForm(request.POST)
         if form.is_valid():
-            user = User()
-            user.username = form.cleaned_data['username']
-            user.email = form.cleaned_data['email']
-            user.set_password(form.cleaned_data['password'])
-            user.save()
-            user = authenticate(username=form.cleaned_data['username'],
-                                password=form.cleaned_data['password'])
-            if user is not None and user.is_active:
-                login(request, user)
-                return redirect('accounts:settings')
+            try:
+                user = User()
+                user.username = form.cleaned_data['username']
+                user.email = form.cleaned_data['email']
+                user.set_password(form.cleaned_data['password'])
+                user.save()
+                user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password'])
+                if user is not None and user.is_active:
+                    login(request, user)
+                    return redirect('accounts:settings')
+            except:
+                form.add_error(None, 'Internal Server Error.')
+        else:
+            form.add_error(None, 'Form is invalid.')
         return render(request, 'accounts/create.html', {'form': form})
 
 
