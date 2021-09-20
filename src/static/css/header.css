@@ -1,5 +1,6 @@
 header {
     height: 50px !important;
+    margin-bottom: 50px;
 }
 
 .ui.fixed.inverted.menu {
