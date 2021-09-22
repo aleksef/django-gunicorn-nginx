@@ -9,9 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href={% static "semantic/dist/semantic.min.css" %}>
     <link rel="stylesheet" href="{% static "css/base.css" %}">
+    
+    <title>{% block title %}{% endblock %} - {{ PROJECT_NAME }}</title>
+    <meta name="description" content="Project general description.">
+    
+    {% block page_meta %}
+    {% endblock %}
+
     {% block css %}
     {% endblock %}
-    <title>{% block title %}{% endblock %} - {{ PROJECT_NAME }}</title>
 </head>
 
 <body>
