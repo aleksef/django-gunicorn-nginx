@@ -148,7 +148,17 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join('static'), os.path.join('semantic'))
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# IMAGES SETTINGS
+userimage = {
+                "height": 150,
+                "width": 150,
+                "max_size": 20000000,
+            }

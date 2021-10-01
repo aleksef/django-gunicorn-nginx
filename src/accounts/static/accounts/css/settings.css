@@ -1,0 +1,88 @@
+#settings-container {
+    width: 400px;
+}
+
+
+/* Image */
+
+#image-uploder {
+    width: 150px;
+    height: 150px;
+}
+
+.file-input.custom {
+    width: 150px;
+    height: 150px;
+    background-color: transparent;
+    background-size: 150px 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: initial;
+}
+
+.file-input.custom:hover {
+    background-color: rgba(255, 255, 255, 0.548);
+}
+
+.file-input {
+    pointer-events: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.file-input>* {
+    pointer-events: none;
+}
+
+.file-input>input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: all;
+    height: 100%;
+    width: 100%;
+}
+
+.wrap {
+    width: 150px;
+    height: 150px;
+    background-color: transparent;
+    background-size: 150px 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: initial;
+}
+
+.wrap:hover {
+    width: 150px;
+    height: 150px;
+}
+
+#file-input:hover {
+    cursor: pointer !important;
+}
+
+#image-input-overlay {
+    color: whitesmoke;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.459);
+}
+
+#image-input-overlay i {
+    font-size: 2rem;
+}
+
+.upload.icon {
+    margin-top: 30px;
+}
+
+#image-input-overlay p {
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 0px 5px 0px 5px;
+}

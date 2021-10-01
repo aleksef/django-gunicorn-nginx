@@ -12,7 +12,11 @@
         <div class="right menu">
             {% if request.user.is_authenticated %}
             <div class="ui simple dropdown item">
-                <img class="ui avatar image" src="{% static "images/logo.png" %}">
+                {% if request.user.useriage.src.url %}
+                <img class="ui avatar image" src="{{ request.user.useriage.src.url }}">
+                {% else %}
+                <img class="ui avatar image" src="{% static "images/user-default.jpg" %}">
+                {% endif %}
                 <span id="menu-username">{{ request.user.username }}</span> <i class="dropdown icon"></i>
                 <div class="menu">
                     <a class="item" href="{% url 'accounts:settings' %}">Account Settings</a>
