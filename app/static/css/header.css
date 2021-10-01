@@ -1,0 +1,20 @@
+header {
+    height: 50px !important;
+    margin-bottom: 15px;
+}
+
+.ui.fixed.inverted.menu {
+    height: 50px !important;
+}
+
+.logo {
+    margin-right: 10px !important;
+}
+
+.ui.avatar.image {
+    margin-right: 10px !important;
+}
+
+#menu-username {
+    font-weight: bold;
+}

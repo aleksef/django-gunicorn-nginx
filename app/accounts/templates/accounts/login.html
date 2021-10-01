@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/login.css' %}">
+{% endblock %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+
+
+<div id="form-container">
+<form class="ui form" id="login-form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <h2 class="ui dividing header">Log in to your account</h2>
+  {% if form.errors.values %}
+  <div class="ui negative message">
+    <div class="header">
+      Error
+    </div>
+      {% for error in form.errors.values %}
+        {{ error }}
+      {% endfor %}
+  </div>
+  {% endif %}  
+
+  {{ form.source.errors }}
+  {{ form.source }}
+
+  {% for field in form.visible_fields %}
+  <div class="field">
+      {{ field.label }}:
+      {{ field }}
+  </div>
+  {% endfor %}
+
+  <div class="ui field">
+    <a href="#">Forgot your password?</a>
+  </div>
+
+
+  <button class="ui fluid primary button" type="submit" id="login-btn">Log In</button>
+  
+  
+  <div class="ui horizontal divider">
+    New to us?
+  </div>
+  <a href="{% url 'accounts:create' %}" class="ui fluid primary button">
+    Create Account
+  </a>
+</form>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="module" src="{% static 'accounts/js/login.js' %}"></script>
+{% endblock %}

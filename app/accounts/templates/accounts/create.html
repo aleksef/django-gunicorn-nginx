@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/create.css' %}">
+{% endblock %}
+
+{% block title %}
+Create Account
+{% endblock %}
+
+{% block content %}
+
+<div id="form-container">
+  <form class="ui form" id="create-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2 class="ui dividing header">Create Account</h2>
+    {% if form.errors.values %}
+    <div class="ui negative message">
+      {% for error in form.errors.values %}
+      {{ error }}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {{ form.source.errors }}
+    {{ form.source }}
+
+    {% for field in form.visible_fields %}
+    <div class="field">
+      {{ field.label }}:
+      {{ field }}
+    </div>
+    {% endfor %}
+
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden" required>
+        <label>I agree to the 
+          <a href="#">Terms and Conditions</a>
+        </label>
+      </div>
+    </div>
+
+    <button class="ui fluid primary button" type="submit" id="create-btn">Create Account</button>
+    <div class="ui horizontal divider">
+      Already have an account?
+    </div>
+    <a href="{% url 'accounts:login' %}" class="ui fluid primary button">
+      Log In
+    </a>
+  </form>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="module" src="{% static 'accounts/js/create.js' %}"></script>
+{% endblock %}
