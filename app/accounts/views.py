@@ -1,4 +1,3 @@
-import cv2
 import uuid
 import os
 
@@ -8,9 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from src.utils.images import check_image, process_user_image
-from src.settings import userimage as settings_userimage
-from accounts.models import UserImage, userimage_delete 
+# from src.utils.images import check_image, process_user_image
+# from src.settings import userimage as settings_userimage
+# from accounts.models import UserImage, userimage_delete 
 from .forms import LoginForm, CreateForm
 
 
@@ -100,32 +99,32 @@ class Settings(generic.View):
         finally:
             return render(request, 'accounts/settings.html', {'userimage': userimage})
     
-    def post(self, request):
-        if request.user.is_authenticated:
-            # User Image
-            if request.FILES.getlist('user-image'):
-                # Check image
-                if not check_image(request.FILES['user-image'],
-                                   settings_userimage['height'],
-                                   settings_userimage['width'],
-                                   settings_userimage['max_size']):
-                    messages.error(request, 'Image must be JPEG or PNG type, at least 150x150 pixels and 2MB maximum size.')                    
-                    return render(request, 
-                                  'accounts/settings-profile.html', 
-                                  {'userimage': '/media/user_images/user-default.jpg'})
-                # Check if userimge exists and delete it
-                try:
-                    UserImage.objects.get(user=request.user).delete()
-                except:
-                    pass
-                finally:
-                    # Create new blank model
-                    userimage = UserImage(user=request.user)
-                    userimage.save()
-                    # Save image to directory
-                    filename = "userimage-" + str(uuid.uuid4()) + ".jpg"
-                    path = os.getcwd() + "/media/images/profiles/" + filename # folder is not creating problem
-                    cv2.imwrite(path, process_user_image(request.FILES['user-image']))
-                    # Save new src in model
-                    userimage.src = "images/profiles/" + filename
-                    userimage.save()
+    # def post(self, request):
+    #     if request.user.is_authenticated:
+    #         # User Image
+    #         if request.FILES.getlist('user-image'):
+    #             # Check image
+    #             if not check_image(request.FILES['user-image'],
+    #                                settings_userimage['height'],
+    #                                settings_userimage['width'],
+    #                                settings_userimage['max_size']):
+    #                 messages.error(request, 'Image must be JPEG or PNG type, at least 150x150 pixels and 2MB maximum size.')                    
+    #                 return render(request, 
+    #                               'accounts/settings-profile.html', 
+    #                               {'userimage': '/media/user_images/user-default.jpg'})
+    #             # Check if userimge exists and delete it
+    #             try:
+    #                 UserImage.objects.get(user=request.user).delete()
+    #             except:
+    #                 pass
+    #             finally:
+    #                 # Create new blank model
+    #                 userimage = UserImage(user=request.user)
+    #                 userimage.save()
+    #                 # Save image to directory
+    #                 filename = "userimage-" + str(uuid.uuid4()) + ".jpg"
+    #                 path = os.getcwd() + "/media/images/profiles/" + filename # folder is not creating problem
+    #                 cv2.imwrite(path, process_user_image(request.FILES['user-image']))
+    #                 # Save new src in model
+    #                 userimage.src = "images/profiles/" + filename
+    #                 userimage.save()

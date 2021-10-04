@@ -1,0 +1,6 @@
+Django
+gunicorn
+psycopg2-binary
+django-compressor
+django-compressor-toolkit
+Pillow
