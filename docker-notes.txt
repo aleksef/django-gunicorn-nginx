@@ -1,0 +1,25 @@
+sudo docker run
+sudo docker ps -a
+sudo docker logs containerID(or name)
+sudo docker exec -it 5b4ce5e50850 /bin/sh  # navigate through virt file system
+
+
+### Dev ###
+sudo docker-compose down -v
+sudo docker-compose build
+sudo docker-compose up -d
+sudo docker-compose exec web python manage.py migrate --noinput
+sudo docker-compose exec web python manage.py flush --no-input
+sudo docker-compose exec web python manage.py migrate
+sudo docker-compose logs -f
+
+
+### You can check that the volume was created as well by running:
+sudo docker volume inspect django-on-docker_postgres_data
+
+
+### Prod ####
+sudo docker-compose -f docker-compose.prod.yml down -v
+sudo docker-compose -f docker-compose.prod.yml up -d --build
+sudo docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+sudo docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
