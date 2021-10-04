@@ -1,5 +1,5 @@
 sudo docker run
-sudo docker ps -a
+sudo docker ps  # list containers, -a for history
 sudo docker logs containerID(or name)
 sudo docker exec -it 5b4ce5e50850 /bin/sh  # navigate through virt file system
 
