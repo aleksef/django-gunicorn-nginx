@@ -11,8 +11,10 @@ then
     echo "PostgreSQL started"
 fi
 
+# migrate and collect static
 python manage.py migrate
 python manage.py collectstatic
-# echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'qgfwjcxn')" | python manage.py shell
+# create admin user
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'qgfwjcxn')" | python manage.py shell
 
 exec "$@"
