@@ -8,7 +8,7 @@
             {{ PROJECT_NAME }}
         </a>
         <a href="#" class="item">Link</a>
-        
+
         <div class="right menu">
             {% if request.user.is_authenticated %}
             <div class="ui simple dropdown item">
@@ -19,12 +19,14 @@
                 {% endif %}
                 <span id="menu-username">{{ request.user.username }}</span> <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a class="item" href="{% url 'accounts:settings' %}">Account Settings</a>
+                    <a class="item" href="{% url 'accounts:settings' %}">
+                        <i class="cog icon"></i>Account Settings
+                    </a>
+                    <a href="{% url 'accounts:logout' %}" class="ui item">
+                        <i class="sign-out icon"></i>Log Out
+                    </a>
                 </div>
             </div>
-            <a href="{% url 'accounts:logout' %}" class="ui item">
-                Log Out
-            </a>
             {% else %}
             <a class="item" href="{% url 'accounts:login' %}">Log In</a>
             <a class="item" href="{% url 'accounts:create' %}">Create Account</a>
@@ -32,12 +34,5 @@
         </div>
     </div>
 </div>
-
-|| User={{ request.user }} ||
-{% if request.user.is_authenticated %}
-<a href="{% url 'accounts:logout' %}">Log Out</a>
-{% else %}
-<a href="{% url 'accounts:create' %}">Create Account</a>
-{% endif %}
 
 <script type="module" src="{% static "js/header.js" %}"></script>
