@@ -8,3 +8,7 @@
     margin: 10px auto;
     margin-bottom: 10px;
 }
+
+.errorlist.nonfield {
+    padding-left: 16px !important;
+}
