@@ -6,7 +6,7 @@ from django.dispatch.dispatcher import receiver
 
 class UserImage(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    src = models.ImageField(upload_to='user_images/', default='user_images/user-default.jpg')
+    src = models.URLField(default="/static/images/user-default.jpg")
 
     def __str__(self):
         return self.user.username

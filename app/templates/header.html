@@ -12,8 +12,8 @@
         <div class="right menu">
             {% if request.user.is_authenticated %}
             <div class="ui simple dropdown item">
-                {% if request.user.useriage.src.url %}
-                <img class="ui avatar image" src="{{ request.user.useriage.src.url }}">
+                {% if request.user.userimage.src %}
+                <img class="ui avatar image" src="{{ request.user.userimage.src }}">
                 {% else %}
                 <img class="ui avatar image" src="{% static "images/user-default.jpg" %}">
                 {% endif %}

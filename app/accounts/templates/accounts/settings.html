@@ -15,18 +15,16 @@ Settings
     <div id="settings-container" class="ui center aligned grid">
 
         <div class="row" id="image-uploder">
-            <form class="ui form" id="user-image-form" method="post" enctype="multipart/form-data">
-                {% csrf_token %}             
-                <div class="wrap" style="background-image: url('{{ userimage }}')";>
-                    <div class="file-input custom">
-                        <input id="file-input" name="user-image" type="file" accept="image/*" />
-                        <div id="image-input-overlay">
-                            <i class="upload icon"></i>
-                            <p>Drag and drop image here or click to upload.</p>
-                        </div>
-                    </div>
-                </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="image_file">
+                <input type="submit" value="submit" />
             </form>
+
+            {% if userimage %}
+                <p>Source: <a href="{{ userimage }}">{{ userimage }}</a></p>
+                <img src="{{ userimage }}"></img>
+            {% endif %}
         </div>
 
         <div class="row">
