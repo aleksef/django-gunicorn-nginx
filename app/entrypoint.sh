@@ -12,6 +12,7 @@ then
 fi
 
 # migrate and collect static
+rm -r -f mediafiles/
 python manage.py migrate
 python manage.py collectstatic
 # create admin user
