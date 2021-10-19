@@ -25,7 +25,14 @@ Settings
                 <p>Source: <a href="{{ userimage }}">{{ userimage }}</a></p>
                 <img src="{{ userimage }}"></img>
             {% endif %}
+
+            <form action="{% url "accounts:deleteUserImage" %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="submit" value="Delete image" />
+            </form>
         </div>
+
+
 
         <div class="row">
             Account settings:

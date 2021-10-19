@@ -1,5 +1,6 @@
 import uuid
 import os
+import traceback
 
 from django.views import generic
 from django.shortcuts import render, redirect
@@ -128,3 +129,18 @@ class UploadUserImage(generic.View):
                 return render(request, 'accounts/settings.html', {'userimage': userimage.src})
         messages.error(request, "Unable to upload new user image.")
         return redirect('accounts:settings')
+
+
+class DeleteUserImage(generic.View):
+    def post(self, request):
+        try:
+            if request.user.is_authenticated:
+                if UserImage.objects.filter(user=request.user).exists():
+                    UserImage.objects.get(user=request.user).delete()
+        except Exception as e:
+            trace_back = traceback.format_exc()
+            message = str(e)+ " " + str(trace_back)
+            print (message)
+            messages.error(request, "Unable to delete user image.")
+        finally:
+            return redirect('accounts:settings')

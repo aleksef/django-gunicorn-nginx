@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_delete
 from django.dispatch.dispatcher import receiver
+from django.core.files.storage import FileSystemStorage
 
 
 class UserImage(models.Model):
@@ -14,5 +15,5 @@ class UserImage(models.Model):
 
 @receiver(post_delete, sender=UserImage)
 def userimage_delete(sender, instance, **kwargs):
-    if instance.src != "user_images/user-default.jpg":
-        instance.src.delete(False)
+    fs = FileSystemStorage()
+    fs.delete(instance.src[7:])

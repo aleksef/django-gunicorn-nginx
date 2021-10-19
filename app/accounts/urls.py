@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', views.Logout.as_view(), name='logout'),
     path('settings/', views.Settings.as_view(), name='settings'),
     path('uploadUserImage/', views.UploadUserImage.as_view(), name='uploadUserImage'),
+    path('deleteUserImage/', views.DeleteUserImage.as_view(), name='deleteUserImage'),
 ]
