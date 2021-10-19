@@ -99,7 +99,9 @@ class Settings(generic.View):
             userimage = '/static/images/user-default.jpg'
         finally:
             return render(request, 'accounts/settings.html', {'userimage': userimage})
-    
+
+
+class UploadUserImage(generic.View):
     def post(self, request):
         if request.user.is_authenticated:
             if request.FILES["image_file"]:
@@ -123,37 +125,6 @@ class Settings(generic.View):
                     # Save new src in model
                     userimage.src = image_url
                     userimage.save()
-
                 return render(request, 'accounts/settings.html', {'userimage': userimage.src})
-
-
-
-    # def post(self, request):
-    #     if request.user.is_authenticated:
-    #         # User Image
-    #         if request.FILES.getlist('user-image'):
-    #             # Check image
-    #             if not check_image(request.FILES['user-image'],
-    #                                settings_userimage['height'],
-    #                                settings_userimage['width'],
-    #                                settings_userimage['max_size']):
-    #                 messages.error(request, 'Image must be JPEG or PNG type, at least 150x150 pixels and 2MB maximum size.')                    
-    #                 return render(request, 
-    #                               'accounts/settings-profile.html', 
-    #                               {'userimage': '/media/user_images/user-default.jpg'})
-    #             # Check if userimge exists and delete it
-    #             try:
-    #                 UserImage.objects.get(user=request.user).delete()
-    #             except:
-    #                 pass
-    #             finally:
-    #                 # Create new blank model
-    #                 userimage = UserImage(user=request.user)
-    #                 userimage.save()
-    #                 # Save image to directory
-    #                 filename = "userimage-" + str(uuid.uuid4()) + ".jpg"
-    #                 path = os.getcwd() + "/media/images/profiles/" + filename # folder is not creating problem
-    #                 cv2.imwrite(path, process_user_image(request.FILES['user-image']))
-    #                 # Save new src in model
-    #                 userimage.src = "images/profiles/" + filename
-    #                 userimage.save()
+        messages.error(request, "Unable to upload new user image.")
+        return redirect('accounts:settings')

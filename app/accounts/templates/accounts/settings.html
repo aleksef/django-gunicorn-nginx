@@ -15,7 +15,7 @@ Settings
     <div id="settings-container" class="ui center aligned grid">
 
         <div class="row" id="image-uploder">
-            <form method="post" enctype="multipart/form-data">
+            <form action="{% url "accounts:uploadUserImage" %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="file" name="image_file">
                 <input type="submit" value="submit" />
