@@ -15,7 +15,6 @@ from accounts.models import UserImage, userimage_delete
 from .forms import LoginForm, CreateForm
 
 
-
 class Logout(generic.View):
     def get(self, request):
         if request.user.is_authenticated:
@@ -105,29 +104,32 @@ class Settings(generic.View):
 class UploadUserImage(generic.View):
     def post(self, request):
         if request.user.is_authenticated:
-            if request.FILES["image_file"]:
-                image_file = request.FILES["image_file"]
-                fs = FileSystemStorage()
-                #TODO CHECK IMAGE
-                #TODO PROCESS IMAGE
-                #TODO USE TRY
-                filename = fs.save("users/userimage-" + str(uuid.uuid4()) + ".jpg",
-                                   image_file)
-                image_url = fs.url(filename)
+            try:
+                if request.FILES["image_file"]:
+                    print()
+                    image_file = request.FILES["image_file"]
+                    fs = FileSystemStorage()
+                    #TODO CHECK IMAGE
+                    #TODO PROCESS IMAGE
+                    #TODO USE TRY
+                    filename = fs.save("users/userimage-" + str(uuid.uuid4()) + ".jpg",
+                                    image_file)
+                    image_url = fs.url(filename)
 
-                if UserImage.objects.filter(user=request.user).exists():
-                    userimage = UserImage.objects.get(user=request.user)
-                    userimage.src = image_url
-                    userimage.save()
-                else:
-                    # Create new blank model
-                    userimage = UserImage(user=request.user)
-                    userimage.save()
-                    # Save new src in model
-                    userimage.src = image_url
-                    userimage.save()
-                return render(request, 'accounts/settings.html', {'userimage': userimage.src})
-        messages.error(request, "Unable to upload new user image.")
+                    if UserImage.objects.filter(user=request.user).exists():
+                        userimage = UserImage.objects.get(user=request.user)
+                        userimage.src = image_url
+                        userimage.save()
+                    else:
+                        # Create new blank model
+                        userimage = UserImage(user=request.user)
+                        userimage.save()
+                        # Save new src in model
+                        userimage.src = image_url
+                        userimage.save()
+                    return render(request, 'accounts/settings.html', {'userimage': userimage.src})
+            except:
+                messages.error(request, "Unable to upload new user image.")
         return redirect('accounts:settings')
 
 
