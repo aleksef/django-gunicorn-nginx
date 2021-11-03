@@ -16,6 +16,6 @@ rm -r -f mediafiles/
 python manage.py migrate
 python manage.py collectstatic --no-input --clear
 # create admin user
-echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'qgfwjcxn')" | python manage.py shell
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'qwertyui')" | python manage.py shell
 
 exec "$@"
