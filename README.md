@@ -1,4 +1,4 @@
-# Djangp-nginx-gunicorn
+# Django-nginx-gunicorn
 
 ## Installation for running on Django built-in engine:
 
@@ -17,7 +17,7 @@ source env/bin/activate
 ```sh
 pip install -r app/requirements.txt
 ```
-### Edit app/src/settings.py
+#### Edit app/src/settings.py
 ```sh
 SECRET_KEY = 'qwerty'
 DEBUG = True
@@ -41,7 +41,7 @@ git clone https://github.com/aleksef/django-gunicorn-nginx.git
 ```sh
 cd django-gunicorn-nginx
 ```
-### Edit app/src/settings.py
+#### Edit app/src/settings.py
 ```sh
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = int(os.environ.get("DEBUG", default=0))
