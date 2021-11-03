@@ -11,8 +11,10 @@ then
     echo "PostgreSQL started"
 fi
 
-# migrate and collect static
+# clear files
 rm -r -f mediafiles/
+rm -r -f staticfiles/
+# migrate and collect static
 python manage.py migrate
 python manage.py collectstatic --no-input --clear
 # create admin user
