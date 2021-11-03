@@ -18,3 +18,8 @@ docker-compose build
 ```sh
 docker-compose up -d
 ```
+
+Currently working links:
+http://127.0.0.1:8000/accounts/login
+http://127.0.0.1:8000/accounts/create_account
+http://127.0.0.1:8000/accounts/settings
