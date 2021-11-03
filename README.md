@@ -18,9 +18,11 @@ source env/bin/activate
 pip install -r app/requirements.txt
 ```
 ### Edit app/src/settings.py
+```sh
 SECRET_KEY = 'qwerty'
 DEBUG = True
 ALLOWED_HOSTS = []
+```
 ```sh
 cd app
 ```
@@ -40,9 +42,11 @@ git clone https://github.com/aleksef/django-gunicorn-nginx.git
 cd django-gunicorn-nginx
 ```
 ### Edit app/src/settings.py
+```sh
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = int(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+```
 ```sh
 docker-compose build
 ```
