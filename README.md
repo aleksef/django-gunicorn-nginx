@@ -1,6 +1,6 @@
 # Django-nginx-gunicorn
 
-## Installation for running on Django built-in engine:
+## Install to run on Django built-in engine:
 
 ```sh
 git clone https://github.com/aleksef/django-gunicorn-nginx.git
@@ -33,7 +33,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-## Installation for running on Django built-in engine:
+## Install with Docker:
 
 ```sh
 git clone https://github.com/aleksef/django-gunicorn-nginx.git
