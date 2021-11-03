@@ -17,7 +17,7 @@ rm -r -f staticfiles/
 # migrate and collect static
 python manage.py migrate
 python manage.py collectstatic --no-input --clear
-# create admin user
+# create superuser
 echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', 'qwertyui')" | python manage.py shell
 
 exec "$@"
