@@ -26,18 +26,11 @@ class AccountsTest(TestCase):
 
     def test_can_login(self):
         user = User.objects.get(username='user')
-        # Log out
-        self.client.login(username='user', password='password')
+        # Log out client
         self.client.logout()
-        # Check if client logged out
-        response = self.client.get('/accounts/settings/')
-        self.assertEquals(response.url, '/accounts/login/')
-        # Log in
-        form_data = {'email': 'user@gmail.com',
-                     'password': 'password'}
-        form = LoginForm(data=form_data)
-        self.assertTrue(form.is_valid())
-        data = urlencode(form_data)
-        response = self.client.post('/accounts/login/', data, content_type="application/x-www-form-urlencoded")
-        # Check if client logged in
+        # Log in client
+        form_data = urlencode({'email': 'user@gmail.com',
+                               'password': 'password'})
+        response = self.client.post('/accounts/login/', form_data, content_type="application/x-www-form-urlencoded")
+        # Check if client is logged in
         self.assertEquals(response.url, '/accounts/settings/')
