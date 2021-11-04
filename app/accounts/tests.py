@@ -24,8 +24,6 @@ class AccountsTest(TestCase):
         self.assertEquals(response.url, '/accounts/login/') # client was redirected to login page
 
     def test_can_login(self):
-        # Log out client
-        self.client.logout()
         # Log in client
         form_data = urlencode({'email': 'user@gmail.com',
                                'password': 'password'})
