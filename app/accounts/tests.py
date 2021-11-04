@@ -17,11 +17,11 @@ class AccountsTest(TestCase):
         self.client.login(username='user', password='password')
         # Check if client is logged in
         response = self.client.get('/accounts/settings/')
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 200) # client can access settings
         # Log out client
         response = self.client.get('/accounts/logout/')
         # Check if client is logged out
-        self.assertEquals(response.url, '/accounts/login/')
+        self.assertEquals(response.url, '/accounts/login/') # client was redirected to login page
 
     def test_can_login(self):
         # Log out client
@@ -31,4 +31,4 @@ class AccountsTest(TestCase):
                                'password': 'password'})
         response = self.client.post('/accounts/login/', form_data, content_type="application/x-www-form-urlencoded")
         # Check if client is logged in
-        self.assertEquals(response.url, '/accounts/settings/')
+        self.assertEquals(response.url, '/accounts/settings/') # client can access settings
