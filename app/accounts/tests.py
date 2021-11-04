@@ -13,7 +13,6 @@ class AccountsTest(TestCase):
         User.objects.create_user('user', 'user@gmail.com', 'password')
     
     def test_can_logout(self):
-        user = User.objects.get(username='user')
         # Log in client
         self.client.login(username='user', password='password')
         # Check if client is logged in
@@ -25,7 +24,6 @@ class AccountsTest(TestCase):
         self.assertEquals(response.url, '/accounts/login/')
 
     def test_can_login(self):
-        user = User.objects.get(username='user')
         # Log out client
         self.client.logout()
         # Log in client
