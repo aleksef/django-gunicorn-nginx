@@ -14,12 +14,14 @@ class AccountsTest(TestCase):
     
     def test_can_logout(self):
         user = User.objects.get(username='user')
-        # Log in
+        # Log in client
         self.client.login(username='user', password='password')
+        # Check if client is logged in
         response = self.client.get('/accounts/settings/')
         self.assertEquals(response.status_code, 200)
-        # Check if client logged out
+        # Log out client
         response = self.client.get('/accounts/logout/')
+        # Check if client is logged out
         self.assertEquals(response.url, '/accounts/login/')
 
     def test_can_login(self):
